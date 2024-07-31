@@ -1,8 +1,5 @@
 package com.prueba.ejemplo001.practicas
 
-import android.R.style
-import android.content.res.Resources.Theme
-import android.graphics.Paint.Style
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,7 +18,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -45,22 +41,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.prueba.ejemplo001.R
 import com.prueba.ejemplo001.ui.theme.Ejemplo001Theme
-import com.prueba.ejemplo001.ui.theme.green200
 import com.prueba.ejemplo001.ui.theme.green500
 
 
 @Composable
 fun Ejercicio01(darkTheme: Boolean = isSystemInDarkTheme()) {
 
-
     Box(
-
         modifier = Modifier
             .fillMaxSize()
             .background(color = MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center,
-
-        ) {
+    ) {
 
         Column(
             modifier = Modifier
@@ -225,13 +217,15 @@ fun Ejercicio01(darkTheme: Boolean = isSystemInDarkTheme()) {
         }
     }
 
-    if (darkTheme) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Transparent),
-            contentAlignment = Alignment.BottomCenter
-        ) {
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Transparent),
+        contentAlignment = Alignment.BottomCenter
+    ) {
+        if (darkTheme) {
+
             Image(
                 painter = painterResource(id = R.drawable.logo_negativo),
                 contentDescription = "logo",
@@ -241,13 +235,9 @@ fun Ejercicio01(darkTheme: Boolean = isSystemInDarkTheme()) {
                     .padding(bottom = 10.dp),
                 contentScale = ContentScale.Fit
             )
-        }
-    } else {
-        Box(
-            modifier = Modifier
-                .fillMaxSize(),
-            contentAlignment = Alignment.BottomCenter
-        ) {
+
+        } else {
+
             Image(
                 painter = painterResource(id = R.drawable.logo_normal),
                 contentDescription = "logo",
@@ -257,9 +247,9 @@ fun Ejercicio01(darkTheme: Boolean = isSystemInDarkTheme()) {
                     .padding(bottom = 10.dp),
                 contentScale = ContentScale.Fit
             )
+
         }
     }
-
 
 }
 
