@@ -3,6 +3,7 @@ package com.prueba.ejemplo001.ui.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -20,16 +21,12 @@ private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
     tertiary = Pink80,
-    background = Color.White,
-    onBackground = Color.White
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = green200,
     secondary = PurpleGrey40,
     tertiary = Pink40,
-    background = Color.White,
-    onBackground = Color.Black
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -49,9 +46,10 @@ fun Ejemplo001Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
+    userPreferredColorScheme: ColorScheme? = null,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
+    /*val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
@@ -59,7 +57,23 @@ fun Ejemplo001Theme(
 
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
+    }*/
+
+    val colorScheme = userPreferredColorScheme ?: if (darkTheme) {
+        darkColorScheme(
+            primary = Color.Gray,
+            background = Color.Black,
+            onBackground = Color.White
+        )
+    } else {
+        lightColorScheme(
+            primary = Color.Gray,
+            background = Color.White,
+            onBackground = Color.Black
+        )
     }
+
+
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {

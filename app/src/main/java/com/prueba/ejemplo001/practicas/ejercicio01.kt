@@ -65,7 +65,7 @@ fun Ejercicio01(darkTheme: Boolean = isSystemInDarkTheme()) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp),
-                contentScale = ContentScale.Fit
+                contentScale = ContentScale.Crop
             )
 
             Row() {
