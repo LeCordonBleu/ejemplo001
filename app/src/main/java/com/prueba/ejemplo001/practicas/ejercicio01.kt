@@ -256,8 +256,8 @@ fun Ejercicio01(darkTheme: Boolean = isSystemInDarkTheme()) {
 @Preview(showSystemUi = true, name = "Light Mode")
 @Composable
 fun Ejercicio01Preview() {
-    Ejemplo001Theme(darkTheme = false) {
-        Ejercicio01(false)
+    Ejemplo001Theme{
+        Ejercicio01()
     }
 }
 
