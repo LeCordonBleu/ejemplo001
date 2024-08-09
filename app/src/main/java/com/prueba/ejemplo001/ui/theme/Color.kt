@@ -13,6 +13,10 @@ val Pink40 = Color(0xFF7D5260)
 val green200 = Color(0xFFa5d6a7)
 val green500 = Color(0xFF4caf50)
 
+val azul400 = Color(0XFF0f70be)
+val azul600 = Color(0XFF0d5691)
+val azul800 = Color(0XFF0e4774)
+
 
 
 val Codidev = Color(0xFF4DCA0C)
