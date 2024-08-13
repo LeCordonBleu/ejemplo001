@@ -14,12 +14,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.prueba.ejemplo001.components.PokemonList
+import com.prueba.ejemplo001.components.PokemonListWithDataClass
+import com.prueba.ejemplo001.components.PokemonListWithState
 import com.prueba.ejemplo001.components.TextInputs
 import com.prueba.ejemplo001.concepts.Answer
 import com.prueba.ejemplo001.concepts.SingleChoiseQuestion
 import com.prueba.ejemplo001.concepts.SurveyAnswer
 import com.prueba.ejemplo001.practicas.Ejercicio01
 import com.prueba.ejemplo001.practicas.SignInScreen
+import com.prueba.ejemplo001.practicasEjm.ListAsistencia
 import com.prueba.ejemplo001.ui.theme.Ejemplo001Theme
 
 class MainActivity : ComponentActivity() {
@@ -27,7 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Ejemplo001Theme {
-                SignInScreen()
+                ListAsistencia()
             }
         }
     }

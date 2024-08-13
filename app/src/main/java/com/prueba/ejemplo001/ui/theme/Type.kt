@@ -2,9 +2,21 @@ package com.prueba.ejemplo001.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.prueba.ejemplo001.R
+
+val NewAmsterdam_regular = FontFamily(
+    Font(R.font.newamsterdam_regular, FontWeight.Normal)
+)
+val NotoSansTelugu = FontFamily(
+    Font(R.font.notosanstelugu_semibold, FontWeight.Normal)
+)
+val Rajdhani = FontFamily(
+    Font(R.font.rajdhani_bold, FontWeight.Bold)
+)
 
 // Set of Material typography styles to start with
 val Typography = Typography(

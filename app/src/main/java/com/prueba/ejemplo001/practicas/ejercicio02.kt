@@ -50,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.prueba.ejemplo001.ui.theme.CodidevDark
 import com.prueba.ejemplo001.R
+import com.prueba.ejemplo001.practicas.components.MyTextField
 import com.prueba.ejemplo001.ui.theme.azul600
 import com.prueba.ejemplo001.ui.theme.azul800
 
@@ -215,6 +216,158 @@ fun SignInScreenOriginal() {
 
 }
 
+@Composable
+fun SignInScreenReutilizable() {
+
+    var username by remember {
+        mutableStateOf("")
+    }
+    var password by remember {
+
+        mutableStateOf("")
+    }
+
+    var isPasswordVisible by remember {
+        mutableStateOf(false)
+    }
+
+    val isFormValid by remember {
+        derivedStateOf {
+            username.isNotBlank() && password.length >= 7
+        }
+    }
+
+    val focusManager = LocalFocusManager.current
+
+    //Log.v("isFormValid", isFormValid.toString())
+
+    Box(
+        modifier = Modifier.background(color = azul800)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        )
+        {
+            Image(
+                painter = painterResource(id = R.drawable.logo_negativo),
+                contentDescription = "App logo",
+                modifier = Modifier
+                    .weight(1f)
+                    .size(200.dp)
+            )
+
+            Card(
+                modifier = Modifier
+                    .weight(2f)
+                    .padding(8.dp),
+                shape = RoundedCornerShape(32.dp)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(30.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "COLABORADOR",
+                        fontWeight = FontWeight.Black,
+                        fontSize = 32.sp,
+                        color = azul800
+                    )
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Spacer(modifier = Modifier.weight(1f))
+
+                        MyTextField(
+                            textFieldValue = username,
+                            onValueChange = {username = it},
+                            textLabel = "Usuario",
+                            keyboardType = KeyboardType.Text,
+                            keyboardActions = KeyboardActions(
+                                onDone = {
+                                    focusManager.moveFocus(FocusDirection.Down)
+                                }
+                            ),
+                            imeActions = ImeAction.Done,
+                            trailingIcon = {
+                                if (username.isNotBlank()) {
+                                    IconButton(onClick = { username = "" }) {
+                                        Icon(
+                                            imageVector = Icons.Filled.Clear,
+                                            contentDescription = "Icon Clear"
+                                        )
+                                    }
+                                }
+                            }
+                        )
+
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        MyTextField(
+                            textFieldValue = password,
+                            onValueChange = { password = it},
+                            textLabel = "Contraseña",
+                            keyboardType = KeyboardType.Password,
+                            keyboardActions = KeyboardActions(
+                                onDone = {
+                                    focusManager.clearFocus()
+                                }
+                            ),
+                            imeActions = ImeAction.Done,
+                            trailingIcon = {
+                                IconButton(onClick = { isPasswordVisible = !isPasswordVisible }) {
+                                    Icon(
+                                        imageVector = if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                                        contentDescription = "Password Toggle"
+                                    )
+                                }
+                            },
+                            visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                        )
+
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Button(
+                            onClick = { /*TODO*/ },
+                            enabled = isFormValid,
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = RoundedCornerShape(16.dp)
+                        ) {
+                            Text(text = "Iniciar Sesión")
+                        }
+
+                        Spacer(modifier = Modifier.weight(1f))
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            TextButton(onClick = { /*TODO*/ }) {
+                                Text(text = "Registrate")
+                            }
+                            TextButton(onClick = { /*TODO*/ }) {
+                                Text(text = "Has olvidado tu contraseña")
+                            }
+                        }
+
+
+                    }
+                }
+
+
+            }
+        }
+    }
+
+}
 
 @Composable
 fun SignInScreen() {
@@ -247,7 +400,7 @@ fun SignInScreen() {
         },
         isPasswordVisible = isPasswordVisible,
         onClickPasswordVisible = {
-            isPasswordVisible = it
+            isPasswordVisible = !it
         },
         isFormValid = isFormValid
     )
@@ -392,7 +545,7 @@ fun SignInScreenHoisting(
                                 Text(text = "Registrate")
                             }
                             TextButton(onClick = { /*TODO*/ }) {
-                                Text(text = "Has olvidado tu contraseña")
+                                Text(text = "Has olvidado tu contraseña?")
                             }
                         }
 
@@ -411,6 +564,6 @@ fun SignInScreenHoisting(
 @Preview(showSystemUi = true)
 @Composable
 fun SignInScreenPreview() {
-    SignInScreen()
+    SignInScreenReutilizable()
 }
 
