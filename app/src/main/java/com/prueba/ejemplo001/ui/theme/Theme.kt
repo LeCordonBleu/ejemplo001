@@ -56,10 +56,10 @@ fun Ejemplo001Theme(
 
     val colorScheme = userPreferredColorScheme ?: if (darkTheme) {
         darkColorScheme(
-            primary = azulSAA,
-            background = fondoOscuroColor,
-            onBackground = fondoClaroColor,
-            secondaryContainer = fondoOscuroColor,
+            primary = Color(0XFF00487e),
+            background = Color(0XFF0d1117),
+            onBackground = Color(0XFFf4f4f4),
+            secondaryContainer = Color(0XFF0d1117),
             secondary = Color(0XFF4493f8),
             onSecondary = Color(0XFF4493f8),
             onPrimary = Color.White
@@ -67,11 +67,11 @@ fun Ejemplo001Theme(
         )
     } else {
         lightColorScheme(
-            primary = azulSAA,
-            background = fondoClaroColor,
-            onBackground = fondoOscuroColor,
+            primary = Color(0XFF00487e),
+            background = Color(0XFFf4f4f4),
+            onBackground = Color(0XFF0d1117),
             secondaryContainer = Color.White,
-            secondary = azulSAA,
+            secondary = Color(0XFF00487e),
             onSecondary = Color.Gray,
             onPrimary = Color(0XFF4493f8)
         )
